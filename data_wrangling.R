@@ -1,10 +1,11 @@
 load(file = "data/enemDF.RData")
 load(file = "data/escolaDF.RData")
 
+enemDF <- select(enemDF, c(enem_vars))
+escolaDF <- select(escolas, c(escola_vars))
+escolaDF <- escolaDF %>% rename(CO_ESCOLA=CO_ENTIDADE)
+
 # Incluir média de notas
-
-
-
 enemDF <- enemDF %>% mutate(MEDIA_GERAL = (NU_NOTA_CN + NU_NOTA_CH + NU_NOTA_LC + NU_NOTA_MT + NU_NOTA_REDACAO) / 5)
 head(enemDF, n = 5)
 save(enemDF, file = "data/enemDF.RData")
