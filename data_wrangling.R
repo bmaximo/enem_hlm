@@ -12,7 +12,7 @@ save(enemDF, file = "data/enemDF.RData")
 
 enem_escola_df <- enemDF %>% filter(
     (TP_ST_CONCLUSAO == 2 | TP_ST_CONCLUSAO == 3) & 
-    !is.na(CO_ESCOLA)
+    !is.na(CO_ESCOLA) 
 )
 
 enem_escola_df <- left_join(enem_escola_df, escolaDF,
@@ -23,11 +23,30 @@ head(enem_escola_df, n = 5)
 # Save a new RData
 save(enem_escola_df, file = "data/enem_escola_df.RData")
 
-#Estudo sobre o desbalanceamento dos dados
-enem_escola_df %>% 
-  group_by(CO_ESCOLA) %>% 
-  summarise(quantidade = n()) %>% 
-  kable() %>%
-  kable_styling(bootstrap_options = "striped", 
-                full_width = F, 
-                font_size = 25)
+
+str(enem_escola_dummies)
+names(enem_escola_dummies)
+
+# DUMMIES
+enem_escola_dummies <- dummy_cols(.data = enem_escola_df,
+                                       select_columns = c(
+                                         "TP_SEXO",
+                                         "TP_COR_RACA", 
+                                         "TP_NACIONALIDADE",
+                                         "TP_DEPENDENCIA",
+                                         "TP_ENSINO",
+                                         "TP_LOCALIZACAO_ESC",
+                                         "Q001",
+                                         "Q002",
+                                         "Q006",
+                                         "Q025"
+                                         ),
+                                       remove_first_dummy = TRUE,
+                                       remove_selected_columns = TRUE)
+
+enem_escola_dummies <- dummy_cols(.data = enem_escola_dummies,
+                                  select_columns = c("Q022", "Q024"),
+                                  remove_most_frequent_dummy = TRUE,
+                                  remove_selected_columns = TRUE)
+
+save(enem_escola_dummies, file = "data/enem_escola_dummies.RData")

@@ -2,61 +2,61 @@ enem_vars <- c(
   "NU_INSCRICAO",
   "CO_MUNICIPIO_RESIDENCIA",
   "SG_UF_RESIDENCIA",
-  "NU_IDADE",
-  "TP_SEXO",
-  "TP_COR_RACA",
-  "TP_NACIONALIDADE",
+  "NU_IDADE", #incluido (passa mas não deixa passar o TP_ENSINO, que no caso melhora o loglik)
+  "TP_SEXO", #incluido
+  "TP_COR_RACA", #incluido
+  "TP_NACIONALIDADE", #incluido
   "TP_ST_CONCLUSAO",
-  "TP_ANO_CONCLUIU",
-  "TP_ESCOLA",
-  "TP_ENSINO",
-  "IN_TREINEIRO",
+  "TP_ANO_CONCLUIU",  #ignorado
+  "TP_ESCOLA", #ignorado
+  "TP_ENSINO", #incluido (passa e melhora o loglik se tirar a idade)
+  "IN_TREINEIRO", #ignorado - todos não são treineiros
   "CO_ESCOLA",
   "CO_MUNICIPIO_ESC",
   "SG_UF_ESC",
-  "TP_DEPENDENCIA_ADM_ESC",
-  "TP_LOCALIZACAO_ESC",
-  "TP_SIT_FUNC_ESC",
-  "IN_SEM_RECURSO",
+  "TP_DEPENDENCIA_ADM_ESC", #ignorado
+  "TP_LOCALIZACAO_ESC", #incluido
+  "TP_SIT_FUNC_ESC", #ignorado
+  "IN_SEM_RECURSO", #incluido (não passou no p-value)
   "NU_NOTA_CN",
   "NU_NOTA_CH",
   "NU_NOTA_LC",
   "NU_NOTA_MT",
   "NU_NOTA_REDACAO",
-  "Q001",
-  "Q002",
-  "Q003",
-  "Q004",
-  "Q005",
-  "Q006",
-  "Q022",
-  "Q024",
-  "Q025"
+  "Q001", #incluido
+  "Q002", #incluido
+  "Q003", #ignorado
+  "Q004", #ignorado
+  "Q005", #ignorado
+  "Q006", #incluido
+  "Q022", #incluido
+  "Q024", #incluido
+  "Q025" #incluido
 )
 
 escola_vars <- c(
   "CO_ENTIDADE",
-  "TP_DEPENDENCIA",
-  "TP_LOCALIZACAO",
-  "IN_AGUA_POTAVEL",
-  "IN_ENERGIA_INEXISTENTE",
-  "IN_ESGOTO_INEXISTENTE",
-  "IN_TRATAMENTO_LIXO_INEXISTENTE",
-  "IN_AREA_VERDE",
-  "IN_BIBLIOTECA",
-  "IN_LABORATORIO_CIENCIAS",
-  "IN_LABORATORIO_INFORMATICA",
-  "IN_QUADRA_ESPORTES",
-  "IN_REFEITORIO",
-  "IN_ACESSIBILIDADE_INEXISTENTE",
-  "QT_SALAS_UTILIZADAS",
-  "QT_SALAS_UTILIZA_CLIMATIZADAS",
-  "QT_SALAS_UTILIZADAS_ACESSIVEIS",
-  "IN_COMPUTADOR",
-  "IN_DESKTOP_ALUNO",
-  "IN_COMP_PORTATIL_ALUNO",
-  "IN_TABLET_ALUNO",
-  "IN_INTERNET",
-  "IN_ACESSO_INTERNET_COMPUTADOR",
-  "IN_ALIMENTACAO"
+  "TP_DEPENDENCIA", #incluido
+  "TP_LOCALIZACAO", #ignorado
+  "IN_AGUA_POTAVEL", #incluido - não passa
+  "IN_ENERGIA_INEXISTENTE", #ignorado - todos são zero
+  "IN_ESGOTO_INEXISTENTE", #incluido - não passa
+  "IN_TRATAMENTO_LIXO_INEXISTENTE", # ignorado
+  "IN_AREA_VERDE", #ignorado
+  "IN_BIBLIOTECA", #incluido
+  "IN_LABORATORIO_CIENCIAS", #incluido - não passa
+  "IN_LABORATORIO_INFORMATICA", #incluido - não passa
+  "IN_QUADRA_ESPORTES", #incluido - não passa
+  "IN_REFEITORIO", #incluido - não passa
+  "IN_ACESSIBILIDADE_INEXISTENTE", #incluido - não passa
+  "IN_COMPUTADOR", #INCLUIDO
+  "IN_DESKTOP_ALUNO", #incluido - não passa
+  "IN_COMP_PORTATIL_ALUNO", #incluido - não passa
+  "IN_TABLET_ALUNO", #incluido - não passa
+  "IN_INTERNET", #incluido - não passa
+  "IN_ACESSO_INTERNET_COMPUTADOR", # ignorado
+  "IN_ALIMENTACAO", #incluido - não passa
+  "QT_SALAS_UTILIZADAS", #incluido
+  "QT_SALAS_UTILIZA_CLIMATIZADAS", #incluido - não passa
+  "QT_SALAS_UTILIZADAS_ACESSIVEIS", #incluido - não passa
 )
