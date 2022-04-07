@@ -1207,7 +1207,8 @@ modelo_intercept32 <- lme(fixed = MEDIA_GERAL
                           + Q001_E
                           + Q001_F
                           + Q001_G
-                          + Q002_H
+                          + Q002_E
+                          + Q002_F
                           + Q006_C
                           + Q006_D
                           + Q006_E
@@ -1244,7 +1245,7 @@ modelo_intercept32 <- lme(fixed = MEDIA_GERAL
                           method = "REML",
                           na.action = na.omit,
                           control =list(msMaxIter = 1000, msMaxEval = 1000))
-# LogLik = -65150.69
+# LogLik = -65146.56
 summary(modelo_intercept32)
 stderr_nlme(modelo_intercept32)
 save(modelo_intercept32, file = "dataModels/modelo_intercept32.RData")
@@ -1252,67 +1253,18 @@ save(modelo_intercept32, file = "dataModels/modelo_intercept32.RData")
 
 #####################################################################
 # INCLINATIONS
-####################################
+####################################################################
 
 #TP_COR_RACA_1
 modelo_inclination1 <- lme(fixed = MEDIA_GERAL 
-                          ~ TP_SEXO_M
-                          + TP_COR_RACA_1
-                          + TP_NACIONALIDADE_1
-                          + Q001_E
-                          + Q001_F
-                          + Q001_G
-                          + Q002_H
-                          + Q006_C
-                          + Q006_D
-                          + Q006_E
-                          + Q006_F
-                          + Q006_G
-                          + Q006_H
-                          + Q006_I
-                          + Q006_J
-                          + Q006_K
-                          + Q006_L
-                          + Q006_M
-                          + Q006_N
-                          + Q006_O
-                          + Q006_P
-                          + Q006_Q
-                          + Q022_A
-                          + Q022_B
-                          + Q025_B
-                          + Q024_A
-                          + Q024_C
-                          + Q024_D
-                          + Q024_E
-                          + TP_ENSINO_2 #escola
-                          + TP_COR_RACA_1:TP_ENSINO_2
-                          + TP_LOCALIZACAO_ESC_2 #escola
-                          + TP_DEPENDENCIA_2 #escola
-                          + TP_COR_RACA_1:TP_DEPENDENCIA_2
-                          + IN_BIBLIOTECA #escola
-                          + IN_COMPUTADOR #escola
-                          + TP_COR_RACA_1:IN_COMPUTADOR
-                          + QT_SALAS_UTILIZADAS, #escola
-                          random = ~ TP_COR_RACA_1 | CO_ESCOLA,
-                          data = enem_escola_dummies,
-                          method = "REML",
-                          na.action = na.omit,
-                          control =list(msMaxIter = 1000, msMaxEval = 1000))
-# LogLik = -65148.85
-summary(modelo_inclination1)
-stderr_nlme(modelo_inclination1)
-
-
-#TP_COR_RACA_1
-modelo_inclination2 <- lme(fixed = MEDIA_GERAL 
                            ~ TP_SEXO_M
                            + TP_COR_RACA_1
                            + TP_NACIONALIDADE_1
                            + Q001_E
                            + Q001_F
                            + Q001_G
-                           + Q002_H
+                           + Q002_E
+                           + Q002_F
                            + Q006_C
                            + Q006_D
                            + Q006_E
@@ -1344,12 +1296,22 @@ modelo_inclination2 <- lme(fixed = MEDIA_GERAL
                            + IN_COMPUTADOR #escola
                            + TP_COR_RACA_1:IN_COMPUTADOR
                            + QT_SALAS_UTILIZADAS, #escola
-                           random = ~ TP_COR_RACA_1 + TP_SEXO_M | CO_ESCOLA,
+                           random = ~ TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B | CO_ESCOLA,
                            data = enem_escola_dummies,
                            method = "REML",
                            na.action = na.omit,
                            control =list(msMaxIter = 1000, msMaxEval = 1000))
-# LogLik = -65148.85
-summary(modelo_inclination2)
-stderr_nlme(modelo_inclination2)
+# LogLik = -65146.56
+summary(modelo_inclination1)
+stderr_nlme(modelo_inclination1)
+
+save(modelo_inclination1, file = "dataModels/modelo_inclination1.RData")
+modelo_inclination2 <- modelo_inclination1
 save(modelo_inclination2, file = "dataModels/modelo_inclination2.RData")
+
+# Q001_F -> -65146.28
+# Q001_F + Q001_G -> -65145.63
+# Q001_F + Q001_G + Q006_F -> -65144.22
+# modelo_inclination1 = Q001_F + Q001_G + Q006_F + Q022_B -> -65139.94
+# modelo_inclination2 = TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B -> -65136.74
+# TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B + Q024_C -> ?
