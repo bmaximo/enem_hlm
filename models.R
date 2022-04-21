@@ -1314,4 +1314,105 @@ save(modelo_inclination2, file = "dataModels/modelo_inclination2.RData")
 # Q001_F + Q001_G + Q006_F -> -65144.22
 # modelo_inclination1 = Q001_F + Q001_G + Q006_F + Q022_B -> -65139.94
 # modelo_inclination2 = TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B -> -65136.74
-# TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B + Q024_C -> ?
+# modelo_inclination3 = TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B + Q024_C -> -65133.31
+
+
+modelo_inclination3 <- lme(fixed = MEDIA_GERAL 
+                           ~ TP_SEXO_M
+                           + TP_COR_RACA_1
+                           + TP_NACIONALIDADE_1
+                           + Q001_E
+                           + Q001_F
+                           + Q001_G
+                           + Q002_E
+                           + Q002_F
+                           + Q006_C
+                           + Q006_D
+                           + Q006_E
+                           + Q006_F
+                           + Q006_G
+                           + Q006_H
+                           + Q006_I
+                           + Q006_J
+                           + Q006_K
+                           + Q006_L
+                           + Q006_M
+                           + Q006_N
+                           + Q006_O
+                           + Q006_P
+                           + Q006_Q
+                           + Q022_A
+                           + Q022_B
+                           + Q025_B
+                           + Q024_A
+                           + Q024_C
+                           + Q024_D
+                           + Q024_E
+                           + TP_ENSINO_2 #escola
+                           + TP_COR_RACA_1:TP_ENSINO_2
+                           + TP_LOCALIZACAO_ESC_2 #escola
+                           + TP_DEPENDENCIA_2 #escola
+                           + TP_COR_RACA_1:TP_DEPENDENCIA_2
+                           + IN_BIBLIOTECA #escola
+                           + IN_COMPUTADOR #escola
+                           + TP_COR_RACA_1:IN_COMPUTADOR
+                           + QT_SALAS_UTILIZADAS, #escola
+                           random = ~ TP_COR_RACA_1 + Q001_F + Q001_G + Q006_F + Q022_B + Q024_C | CO_ESCOLA,
+                           data = enem_escola_dummies,
+                           method = "REML",
+                           na.action = na.omit,
+                           control =list(msMaxIter = 1000, msMaxEval = 1000))
+
+save(modelo_inclination3, file = "dataModels/modelo_inclination3.RData")
+summary(modelo_inclination3)
+
+
+modelo_final <- lme(fixed = MEDIA_GERAL 
+                           ~ TP_SEXO_M
+                           + TP_COR_RACA_1
+                           + TP_NACIONALIDADE_1
+                           + Q001_E
+                           + Q001_F
+                           + Q001_G
+                           + Q002_E
+                           + Q002_F
+                           + Q006_C
+                           + Q006_D
+                           + Q006_E
+                           + Q006_F
+                           + Q006_G
+                           + Q006_H
+                           + Q006_I
+                           + Q006_J
+                           + Q006_K
+                           + Q006_L
+                           + Q006_M
+                           + Q006_N
+                           + Q006_O
+                           + Q006_P
+                           + Q006_Q
+                           + Q022_A
+                           + Q022_B
+                           + Q025_B
+                           + Q024_A
+                           + Q024_C
+                           + Q024_D
+                           + Q024_E
+                           + TP_ENSINO_2 #escola
+                           + TP_COR_RACA_1:TP_ENSINO_2
+                           + TP_LOCALIZACAO_ESC_2 #escola
+                           + TP_DEPENDENCIA_2 #escola
+                           + TP_COR_RACA_1:TP_DEPENDENCIA_2
+                           + IN_BIBLIOTECA #escola
+                           + IN_COMPUTADOR #escola
+                           + TP_COR_RACA_1:IN_COMPUTADOR
+                           + QT_SALAS_UTILIZADAS, #escola
+                           random = ~ TP_COR_RACA_1 | CO_ESCOLA,
+                           data = enem_escola_dummies,
+                           method = "REML",
+                           na.action = na.omit,
+                           control =list(msMaxIter = 1000, msMaxEval = 1000))
+summary(modelo_final)
+stderr_nlme(modelo_final)
+save(modelo_final, file = "dataModels/modelo_final.RData")
+# logLik = -65144.52
