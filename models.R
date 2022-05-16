@@ -1416,3 +1416,5 @@ summary(modelo_final)
 stderr_nlme(modelo_final)
 save(modelo_final, file = "dataModels/modelo_final.RData")
 # logLik = -65144.52
+
+enem_predict$hlm2_fitted <- predict(modelo_final, enem_predict)

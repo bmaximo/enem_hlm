@@ -50,3 +50,19 @@ enem_escola_dummies <- dummy_cols(.data = enem_escola_dummies,
                                   remove_selected_columns = TRUE)
 
 save(enem_escola_dummies, file = "data/enem_escola_dummies.RData")
+
+enem_predict = enem_escola_dummies %>% filter(
+    !is.na(IN_BIBLIOTECA) && !is.na(QT_SALAS_UTILIZADAS)
+)
+
+enem_predict = enem_predict %>% filter(
+  !is.na(QT_SALAS_UTILIZADAS)
+)
+
+enem_predict = enem_predict %>% filter(
+  !is.na(TP_ENSINO_2)
+)
+
+Atest = enem_predict %>% filter(
+  is.na(TP_LOCALIZACAO_ESC_2)
+)
